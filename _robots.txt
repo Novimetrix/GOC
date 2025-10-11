@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://greenoceanconsultants.com/sitemap.xml
+Host: https://greenoceanconsultants.com
