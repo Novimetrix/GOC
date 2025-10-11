@@ -8,10 +8,8 @@ echo =====================================================
 REM ---------- 1. Create _redirects ----------
 echo Creating _redirects...
 (
-echo # Trailing slash normalization
-echo /*    /:splat/    301
-echo.
-echo # Example old page redirect
+echo # No automatic trailing slash redirects to avoid Cloudflare Pages errors
+echo # Only include specific old-page redirects if needed
 echo /old-page.html    /new-page/    301
 ) > _redirects
 
