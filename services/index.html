@@ -3,7 +3,7 @@
 
 <!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 11 Oct 2025 17:10:22 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<head>\r\n  <link rel="preload" as="style" href="../wp-content/uploads/blocksy/css/global1f07.css?ver=00762">\r\n  <link rel="preload" as="style" href="../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks225e.css?ver=3.19.0">\r\n  <link rel="preload" as="style" href="../wp-includes/css/dist/block-library/style.min32d4.css?ver=6.8.3">\r\n  <link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/main.min202b.css?ver=2.1.15">\r\n  <link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/stackable.min202b.css?ver=2.1.15">\r\n  <link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css">\r\n
+<head>
 	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
@@ -45,70 +45,61 @@
 <style id="ct-main-styles-inline-css">[data-header*="type-1"] {--has-transparent-header:1;}</style>
 
 <style class="stk-block-styles">.stk-5cccddf .stk--block-align-5cccddf{align-items:flex-start !important;}.stk-5cccddf{background-image:url(../wp-content/uploads/2025/10/yankrukov.webp) !important;background-position:center center !important;background-repeat:no-repeat !important;background-size:cover !important;border-style:solid !important;min-height:55rem !important;align-items:center !important;display:flex !important;}.stk-5cccddf:before{background-color:#000000 !important;opacity:0.5 !important;}.stk-ac4472d{align-items:center !important;display:flex !important;right:-100px !important;bottom:-100px !important;}.stk-52ede1c{margin-left:100px !important;}.stk-52ede1c .stk-block-heading__text{font-size:45px !important;color:#ffffff !important;font-weight:800 !important;}.stk-c4215d7 .stk-block-text__text{color:#ffffff !important;}.stk-3f9b936,.stk-f146ae6,.stk-84f9afa,.stk-4388bb5{height:100px !important;}.stk-b758534,.stk-0e55a5e,.stk-9439654{margin-top:var(--stk--preset--spacing--70, 3.38rem) !important;margin-bottom:var(--stk--preset--spacing--70, 3.38rem) !important;}.stk-c98497a .stk-block-heading__text{font-size:45px !important;color:#000000 !important;font-weight:800 !important;}:is(.stk-9a8779d, .stk-4fb329c, .stk-bf9c631) .stk-block-card__image{aspect-ratio:3/4 !important;height:auto !important;}:is(.stk-6ab9289, .stk-563ff0d, .stk-eb97f93, .stk-634c56f) .stk-block-heading__text{color:#000000 !important;}.stk-d93864e{margin-bottom:200px !important;}.stk-54eb9c2 .stk-block-heading__text{color:#000000 !important;font-weight:800 !important;}.stk-0e55a5e-column{--stk-column-gap:var(--stk--preset--spacing--40, 30px) !important;}.stk-19cb02b .stk-img-wrapper{aspect-ratio:1/1 !important;height:auto !important;}.stk-2732856-inner-blocks{justify-content:center !important;}.stk-e8af694,.stk-feba686{margin-bottom:40px !important;}.stk-b4bbbc6{margin-top:var(--stk--preset--spacing--70, 3.38rem) !important;margin-bottom:0px !important;}.stk-634c56f{margin-bottom:150px !important;}@media screen and (max-width:999px){.stk-52ede1c{right:100px !important;}.stk-52ede1c .stk-block-heading__text{font-size:35px !important;}.stk-c98497a .stk-block-heading__text{font-size:45px !important;}:is(.stk-9a8779d, .stk-4fb329c, .stk-bf9c631) .stk-block-card__image,.stk-19cb02b .stk-img-wrapper{height:auto !important;}}@media screen and (max-width:689px){.stk-5cccddf{background-repeat:no-repeat !important;background-size:cover !important;min-height:0px !important;}.stk-ac4472d{right:-35px !important;}.stk-52ede1c{bottom:-80px !important;}.stk-52ede1c .stk-block-heading__text{font-size:30px !important;}:is(.stk-9a8779d, .stk-4fb329c, .stk-bf9c631) .stk-block-card__image,.stk-19cb02b .stk-img-wrapper{height:auto !important;}}</style>	<script>
-/* GOC UltraSafe SMART v1 -- repair-only */
+/* GOC Image Rehydrate Runtime v1 */
 (function(){
-  function firstFromSet(str){
-    if(!str) return null;
-    var parts = str.split(',');
+  function firstFromSet(s){
+    if(!s) return null;
+    var parts = s.split(',');
     for (var i=0;i<parts.length;i++){
       var u = parts[i].replace(/^\s+|\s+$/g,'').split(/\s+/)[0];
       if (u) return u;
     }
     return null;
   }
-  function fixImg(img){
-    try{
-      var src = img.getAttribute('src')||'';
-      var ss  = img.getAttribute('srcset')||'';
-      // only intervene if src is empty/placeholder and srcset exists
-      if ((src==='' || /^\s*$/.test(src) || /placeholder|transparent\.png|\.svg$/i.test(src)) && ss){
-        var u = firstFromSet(ss);
-        if (u){
-          img.setAttribute('src', u);
-          img.removeAttribute('srcset');
-          img.removeAttribute('sizes');
-        }
-      }
-    }catch(e){}
+  function applyDataAttrsToImg(img){
+    var ds = img.getAttribute('data-src') || img.getAttribute('datasrc');
+    var dss = img.getAttribute('data-srcset') || img.getAttribute('imagesrcset') || img.getAttribute('data-src-set');
+    var dsz = img.getAttribute('data-sizes') || img.getAttribute('datasizes');
+    if (ds && !img.getAttribute('src')) img.setAttribute('src', ds);
+    if (dss && !img.getAttribute('srcset')) img.setAttribute('srcset', dss);
+    if (dsz && !img.getAttribute('sizes')) img.setAttribute('sizes', dsz);
   }
-  function fixPicture(pic){
-    try{
-      var img = pic.getElementsByTagName('img')[0];
-      if (!img) return;
-      var hasSrc = (img.getAttribute('src')||'').replace(/^\s+|\s+$/g,'') !== '';
-      if (hasSrc && !/placeholder|transparent\.png|\.svg$/i.test(img.getAttribute('src'))) return;
-      var sources = pic.getElementsByTagName('source');
-      for (var i=0;i<sources.length;i++){
-        var u = firstFromSet(sources[i].getAttribute('srcset'));
-        if (u){
-          img.setAttribute('src', u);
-          img.removeAttribute('srcset'); img.removeAttribute('sizes');
-          for (var j=0;j<sources.length;j++){
-            sources[j].removeAttribute('srcset');
-            sources[j].removeAttribute('sizes');
-          }
-          return;
-        }
+  function applyDataAttrsToSource(source){
+    var dss = source.getAttribute('data-srcset') || source.getAttribute('imagesrcset') || source.getAttribute('data-src-set');
+    var dsz = source.getAttribute('data-sizes') || source.getAttribute('datasizes');
+    if (dss && !source.getAttribute('srcset')) source.setAttribute('srcset', dss);
+    if (dsz && !source.getAttribute('sizes')) source.setAttribute('sizes', dsz);
+  }
+  function ensureImgSrcFromPicture(pic){
+    var img = pic.getElementsByTagName('img')[0];
+    if (!img) return;
+    var src = img.getAttribute('src');
+    if (src && !/^\s*$/.test(src) && !/placeholder|transparent\.png|\.svg$/i.test(src)) return;
+    var sources = pic.getElementsByTagName('source');
+    for (var i=0;i<sources.length;i++){
+      var s = sources[i].getAttribute('srcset') || sources[i].getAttribute('data-srcset') || sources[i].getAttribute('imagesrcset');
+      var u = firstFromSet(s);
+      if (u){
+        img.setAttribute('src', u);
+        return;
       }
-      // fallback to img's own srcset, if present
-      var uu = firstFromSet(img.getAttribute('srcset'));
-      if (uu){
-        img.setAttribute('src', uu);
-        img.removeAttribute('srcset'); img.removeAttribute('sizes');
-      }
-    }catch(e){}
+    }
+    // fallback: its own srcset
+    var uu = firstFromSet(img.getAttribute('srcset') || img.getAttribute('data-srcset') || img.getAttribute('imagesrcset'));
+    if (uu) img.setAttribute('src', uu);
   }
   function run(){
-    var pics = document.getElementsByTagName('picture');
-    for (var i=0;i<pics.length;i++){ fixPicture(pics[i]); }
+    // 1) Promote data-* to real attrs
     var imgs = document.getElementsByTagName('img');
-    for (var j=0;j<imgs.length;j++){ fixImg(imgs[j]); }
+    for (var i=0;i<imgs.length;i++){ applyDataAttrsToImg(imgs[i]); }
+    var sources = document.getElementsByTagName('source');
+    for (var j=0;j<sources.length;j++){ applyDataAttrsToSource(sources[j]); }
+    // 2) Ensure picture has img src fallback
+    var pics = document.getElementsByTagName('picture');
+    for (var k=0;k<pics.length;k++){ ensureImgSrcFromPicture(pics[k]); }
   }
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
+  if (document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', run); }
+  else { run(); }
 })();
 </script>\r\n</head>
 
