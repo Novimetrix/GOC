@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo === GOC SEO + Mobile Fix (v4.2) ===
+echo === GOC SEO + Mobile Fix (v4.2a - legacy WSH safe) ===
 echo Backing up current HTML files...
 
 set SRC=%~dp0
@@ -15,7 +15,7 @@ for /r "%SRC%" %%f in (*.html) do (
 echo Processing HTML files...
 for /r "%SRC%" %%f in (*.html) do (
   echo Patching: %%~nxf
-  cscript //nologo "%SRC%goc-seo-perf-v4.2.js" "%%f"
+  cscript //nologo "%SRC%goc-seo-perf-v4.2a.js" "%%f"
 )
 
 echo Done.
