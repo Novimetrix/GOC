@@ -1,5 +1,11 @@
-// goc-seo-perf-wsh-v3.js — PERF + MOBILE FIX (WSH, safer regex)
-// Run: cscript //nologo goc-seo-perf-wsh-v3.js
+// goc-seo-perf-wsh-v4.js — PERF + MOBILE/TABLET IMAGE FIX (WSH, no PowerShell/Node)
+// - Preserves srcset/sizes
+// - Converts lazy attrs to real: data-src -> src, data-srcset/imagesrcset -> srcset, data-sizes -> sizes
+// - Handles <picture><source ...> too (mobile/tablet fix)
+// - If <img> has srcset but no src, set src to first candidate from srcset for fallback
+// - Adds loading/decoding (hero eager/high; others lazy/async)
+// - Fixes localhost/127 URLs, injects canonical + description, writes robots/sitemap
+// Run: cscript //nologo goc-seo-perf-wsh-v4.js
 
 (function () {
   var fso   = new ActiveXObject("Scripting.FileSystemObject");
@@ -9,7 +15,7 @@
 
   function log(s){ WScript.Echo(s); }
 
-  // UTF-8 load/save
+  // UTF-8 helpers
   function loadUtf8(path){
     var s = new ActiveXObject("ADODB.Stream");
     s.Type = 2; s.Charset = "utf-8"; s.Open(); s.LoadFromFile(path);
@@ -31,20 +37,21 @@
   }
   function canonicalFor(absPath){ return domain + relWebPath(absPath); }
 
+  // Patterns
   var reLocalHost = /https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?(\/[^"' \t>]*?)?/gi;
   var reHeadOpen  = /<head\b([^>]*)>/i;
   var reCanonFind = /<link\b[^>]*rel\s*=\s*["']canonical["'][^>]*>/i;
   var reDescFind  = /<meta\b[^>]*name\s*=\s*["']description["'][^>]*>/i;
   var reImgTag    = /<img\b[^>]*>/ig;
+  var reSourceTag = /<source\b[^>]*>/ig;
 
   function fixLocalhostUrls(html){
     return html.replace(reLocalHost, function(_, path){ return path ? path : "/"; });
   }
 
-  // Attribute helpers (avoid nested-quote regex pitfalls)
+  // Attribute helpers (generic for img/source)
   function hasAttr(tag, name){
-    var re = new RegExp('\\b' + name + '\\s*=', 'i');
-    return re.test(tag);
+    return new RegExp('\\b' + name + '\\s*=', 'i').test(tag);
   }
   function getAttr(tag, name){
     var m = tag.match(new RegExp(name + '\\s*=\\s*"([^"]*)"', 'i'));
@@ -58,12 +65,32 @@
     var re1 = new RegExp('\\s+' + name + '\\s*=\\s*"[^"]*"', 'ig');
     var re2 = new RegExp("\\s+" + name + "\\s*=\\s*'[^']*'", 'ig');
     var re3 = new RegExp('\\s+' + name + '\\s*=\\s*[^\\s>]+', 'ig');
-    tag = tag.replace(re1, '').replace(re2, '').replace(re3, '');
-    return tag;
+    return tag.replace(re1, '').replace(re2, '').replace(re3, '');
   }
-  function setAttr(tag, name, value){
-    tag = removeAttr(tag, name);
-    return tag.replace(/^<img\b/i, '<img ' + name + '="' + value + '"');
+  function setAttrGeneric(tag, tagName, name, value){
+    var reHas = new RegExp('\\b' + name + '\\s*=', 'i');
+    if (reHas.test(tag)){
+      // replace value
+      var reVal1 = new RegExp(name + '\\s*=\\s*"[^"]*"', 'i');
+      var reVal2 = new RegExp(name + "\\s*=\\s*'[^']*'", 'i');
+      var reVal3 = new RegExp(name + '\\s*=\\s*[^\\s>]+', 'i');
+      if (reVal1.test(tag)) return tag.replace(reVal1, name + '="' + value + '"');
+      if (reVal2.test(tag)) return tag.replace(reVal2, name + '="' + value + '"');
+      return tag.replace(reVal3, name + '="' + value + '"');
+    } else {
+      // insert after tag name
+      return tag.replace(new RegExp('^<' + tagName + '\\b', 'i'), '<' + tagName + ' ' + name + '="' + value + '"');
+    }
+  }
+  function setImgAttr(tag, name, value){ return setAttrGeneric(tag, 'img', name, value); }
+  function setSourceAttr(tag, name, value){ return setAttrGeneric(tag, 'source', name, value); }
+
+  function firstSrcFromSrcset(srcset){
+    // pick first URL (before first comma), then first token before whitespace
+    if (!srcset) return "";
+    var first = srcset.split(',')[0] || "";
+    var url = first.trim().split(/\s+/)[0] || "";
+    return url;
   }
 
   function patchHead(html, absPath){
@@ -79,47 +106,81 @@
   }
 
   function patchImages(html){
+    // First, fix <source> tags inside <picture>
+    html = html.replace(reSourceTag, function(tag){
+      var t = tag;
+      if (hasAttr(t, 'data-srcset')) {
+        var v = getAttr(t, 'data-srcset');
+        t = removeAttr(t, 'data-srcset');
+        t = setSourceAttr(t, 'srcset', v);
+      }
+      if (hasAttr(t, 'imagesrcset') && !hasAttr(t, 'srcset')) {
+        var v2 = getAttr(t, 'imagesrcset');
+        t = removeAttr(t, 'imagesrcset');
+        t = setSourceAttr(t, 'srcset', v2);
+      } else {
+        t = removeAttr(t, 'imagesrcset');
+      }
+      if (hasAttr(t, 'data-sizes')) {
+        var v3 = getAttr(t, 'data-sizes');
+        t = removeAttr(t, 'data-sizes');
+        t = setSourceAttr(t, 'sizes', v3);
+      }
+      return t;
+    });
+
+    // Then, fix <img> tags
     var idx = 0;
-    return html.replace(reImgTag, function(tag){
+    html = html.replace(reImgTag, function(tag){
       var t = tag;
 
-      // Convert lazy data-* to real responsive attributes
+      // Convert lazy data-* to real
       if (!hasAttr(t, 'src') && hasAttr(t, 'data-src')) {
         var v = getAttr(t, 'data-src');
-        t = setAttr(t, 'src', v);
+        t = removeAttr(t, 'data-src');
+        t = setImgAttr(t, 'src', v);
       } else if (hasAttr(t, 'data-src')) {
-        // if both present, prefer explicit src; just drop data-src
         t = removeAttr(t, 'data-src');
       }
       if (hasAttr(t, 'data-srcset')) {
         var v2 = getAttr(t, 'data-srcset');
-        t = setAttr(t, 'srcset', v2);
+        t = removeAttr(t, 'data-srcset');
+        t = setImgAttr(t, 'srcset', v2);
       }
       if (hasAttr(t, 'imagesrcset') && !hasAttr(t, 'srcset')) {
         var v3 = getAttr(t, 'imagesrcset');
-        t = setAttr(t, 'srcset', v3);
+        t = removeAttr(t, 'imagesrcset');
+        t = setImgAttr(t, 'srcset', v3);
+      } else {
+        t = removeAttr(t, 'imagesrcset');
       }
       if (hasAttr(t, 'data-sizes')) {
         var v4 = getAttr(t, 'data-sizes');
-        t = setAttr(t, 'sizes', v4);
+        t = removeAttr(t, 'data-sizes');
+        t = setImgAttr(t, 'sizes', v4);
       }
-      // Clean leftover lazy attrs
-      t = removeAttr(t, 'imagesrcset');
-      t = removeAttr(t, 'data-srcset');
-      t = removeAttr(t, 'data-sizes');
 
-      // Hero vs below-the-fold
-      if (idx === 0) {
-        t = setAttr(t, 'loading', 'eager');
-        t = setAttr(t, 'fetchpriority', 'high');
-      } else {
-        t = setAttr(t, 'loading', 'lazy');
+      // If img has srcset but no src, set src from first srcset candidate (fallback)
+      if (!hasAttr(t, 'src') && hasAttr(t, 'srcset')) {
+        var ss = getAttr(t, 'srcset');
+        var url = firstSrcFromSrcset(ss);
+        if (url) t = setImgAttr(t, 'src', url);
       }
-      t = setAttr(t, 'decoding', 'async');
+
+      // Perf hints
+      if (idx === 0) {
+        t = setImgAttr(t, 'loading', 'eager');
+        t = setImgAttr(t, 'fetchpriority', 'high');
+      } else {
+        t = setImgAttr(t, 'loading', 'lazy');
+      }
+      t = setImgAttr(t, 'decoding', 'async');
 
       idx++;
       return t;
     });
+
+    return html;
   }
 
   function patchHtml(absPath){
@@ -166,7 +227,7 @@
     saveUtf8(sitemapPath, sm);
   }
 
-  WScript.Echo("Patching HTML (perf + mobile fix v3)...");
+  WScript.Echo("Patching HTML (perf + mobile fix v4)...");
   walkAndPatch(root);
   WScript.Echo("Done.");
 })();
