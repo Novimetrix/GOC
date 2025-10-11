@@ -1,0 +1,12 @@
+File: C:\Users\moham\Desktop\GOC Site\about\index.html
+Time: Sat, 11 Oct 2025 14:44:52 UTC
+
+IMG: total=17, noSrc=0, emptySrc=0, dataSrc=0, hiddenStyle=0, lazyClass=0, decodingAttr=17
+PICTURE: total=0, noImgSrc=0, avifOnly=0, hasNonAvif=0
+SOURCE: total=0
+VIEWPORT meta: present
+SCRIPTS: external=1, likelyBlocking=1
+STYLES: link count=6
+EXTERNAL ORIGINS (1): https://gmpg.org
+
+----------------------------------------
