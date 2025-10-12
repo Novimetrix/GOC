@@ -1,0 +1,13 @@
+/wp-content/themes/blocksy/static/bundle/*
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+  Cross-Origin-Resource-Policy: cross-origin
+
+/wp-content/plugins/*
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+  Cross-Origin-Resource-Policy: cross-origin
+
+/*.js
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
