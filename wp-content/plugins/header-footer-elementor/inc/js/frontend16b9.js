@@ -170,7 +170,7 @@
 
 		});
 
-        // Acessibility functions
+        / Acessibility functions
 
   		$scope.find( '.parent-has-child .hfe-has-submenu-container a').attr( 'aria-haspopup', 'true' );
   		$scope.find( '.parent-has-child .hfe-has-submenu-container a').attr( 'aria-expanded', 'false' );
@@ -186,11 +186,11 @@
 			hef_navmenu_toggle.find('i').attr('aria-hidden', 'false');
 		}
 
-  		// End of accessibility functions
+  		/ End of accessibility functions
 
 		$( document ).trigger( 'hfe_nav_menu_init', id );
 
-		// Add keyboard navigation for expandable menu
+		/ Add keyboard navigation for expandable menu
 		if ( 'expandible' === layout ) {
 			$( '.elementor-element-' + id + ' nav' ).on( 'keydown', function(e) {
 				var $currentElement = $( document.activeElement );
@@ -198,34 +198,34 @@
 				var currentIndex = $menuItems.index( $currentElement );
 
 				switch( e.key ) {
-					case 'Escape': // Escape key - close menu
+					case 'Escape': / Escape key - close menu
 						$( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' ).trigger( 'click' );
 						$( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' ).focus();
 						e.preventDefault();
 						break;
-					case 'ArrowDown': // Down arrow
+					case 'ArrowDown': / Down arrow
 						if ( currentIndex < $menuItems.length - 1 ) {
 							$menuItems.eq( currentIndex + 1 ).focus();
 						}
 						e.preventDefault();
 						break;
-					case 'ArrowUp': // Up arrow
+					case 'ArrowUp': / Up arrow
 						if ( currentIndex > 0 ) {
 							$menuItems.eq( currentIndex - 1 ).focus();
 						}
 						e.preventDefault();
 						break;
-					case 'Tab': // Tab key
-						// Let default tab behavior work but close menu when tabbing out
+					case 'Tab': / Tab key
+						/ Let default tab behavior work but close menu when tabbing out
 						if ( e.shiftKey && currentIndex === 0 ) {
-							// Shift+Tab on first item - close menu
+							/ Shift+Tab on first item - close menu
 							setTimeout(function() {
 								if ( !$( '.elementor-element-' + id + ' nav' ).find( ':focus' ).length ) {
 									$( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' ).trigger( 'click' );
 								}
 							}, 10);
 						} else if ( !e.shiftKey && currentIndex === $menuItems.length - 1 ) {
-							// Tab on last item - close menu
+							/ Tab on last item - close menu
 							setTimeout(function() {
 								if ( !$( '.elementor-element-' + id + ' nav' ).find( ':focus' ).length ) {
 									$( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' ).trigger( 'click' );
@@ -241,12 +241,12 @@
 
 			var $this = $( this );
 
-			// Handle Enter and Space keys for submenu toggle
+			/ Handle Enter and Space keys for submenu toggle
 			if ( e.key === 'Enter' || e.key === 'Space' ) {
 				e.preventDefault();
 				e.stopPropagation();
 			} else {
-				return; // Only handle Enter and Space keys
+				return; / Only handle Enter and Space keys
 			}
 
 		  	if( $this.parent().hasClass( 'menu-active' ) ) {
@@ -662,12 +662,12 @@
 
 		$( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' ).off( 'click keyup' ).on( 'click keyup', function( event ) {
 
-			// Handle keyboard events properly
+			/ Handle keyboard events properly
 			if ( event.type === 'keyup' && event.key !== 'Enter' && event.key !== 'Space' ) {
-				return; // Only handle Enter and Space keys
+				return; / Only handle Enter and Space keys
 			}
 
-			// Prevent default for keyboard events to avoid scrolling
+			/ Prevent default for keyboard events to avoid scrolling
 			if ( event.type === 'keyup' ) {
 				event.preventDefault();
 			}
@@ -726,7 +726,7 @@
 
 				$( '.elementor-element-' + id + ' nav' ).addClass( 'menu-is-active' );
 				
-				// Focus on first menu item when menu opens
+				/ Focus on first menu item when menu opens
 				if ( event.type === 'keyup' ) {
 					setTimeout(function() {
 						$selector.find('li:first-child > a').focus();
@@ -744,9 +744,9 @@
 				var link  = $this.attr( 'href' );
 				var linkValue = '';
 				
-				// Check if this is an anchor link
+				/ Check if this is an anchor link
 				if ( link && link.includes( '#' ) ) {
-					// Get the hash value
+					/ Get the hash value
 					if ( link.charAt(0) === '#' ) {
 						event.preventDefault();
 						linkValue = link.slice( 1 );
@@ -761,25 +761,25 @@
 				if ( linkValue.length > 0 ) {
 					var targetSection = $( '#' + linkValue );
 
-					if ( targetSection.length ) {	// Check if the target section exists.
+					if ( targetSection.length ) {	/ Check if the target section exists.
 						$('html, body').animate({
 							scrollTop: targetSection.offset().top
 						}, 800); 
 					}
 
-					// Close the menu after clicking anchor link
+					/ Close the menu after clicking anchor link
 					setTimeout(function() {
 						if ( 'expandible' == layout ) {
-							// For expandible layout, trigger click on toggle if menu is open
+							/ For expandible layout, trigger click on toggle if menu is open
 							var $toggle = $( '.elementor-element-' + id + ' .hfe-nav-menu__toggle' );
 							if ( $toggle.hasClass( 'hfe-active-menu' ) ) {
 								$toggle.trigger( 'click' );
 							}
 						} else if ( 'flyout' == layout ) {
-							// For flyout layout, use the close menu function
+							/ For flyout layout, use the close menu function
 							_closeMenu( id );
 						} else {
-							// For horizontal and vertical layouts on mobile/tablet
+							/ For horizontal and vertical layouts on mobile/tablet
 							if ( window.matchMedia( '(max-width: 1024px)' ).matches ) {
 								if ( $( '.elementor-element-' + id ).hasClass('hfe-nav-menu__breakpoint-tablet') || 
 									 $( '.elementor-element-' + id ).hasClass('hfe-nav-menu__breakpoint-mobile') ) {
@@ -790,7 +790,7 @@
 								}
 							}
 						}
-					}, 100); // Small delay to ensure smooth scrolling starts first
+					}, 100); / Small delay to ensure smooth scrolling starts first
 				}
 			}
 		);
