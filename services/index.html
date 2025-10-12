@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:27:04 GMT -->
+<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:42:20 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -14,7 +14,7 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="GOC &raquo; Feed" href="../feed/index.html" />
 <link rel="alternate" type="application/rss+xml" title="GOC &raquo; Comments Feed" href="../comments/feed/index.html" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global7501.css?ver=93192' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global9acc.css?ver=94482' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks225e.css?ver=3.19.0' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -88,7 +88,7 @@
 	class="ct-header-text "
 	data-id="text">
 	<div class="entry-content is-layout-flow">
-		<!-- GOC — CSS-only Toggle Menu (no JS) + Exact Theme Drawer + Matched Overlay Hue -->
+		<!-- GOC — CSS-only Toggle Menu (no JS) + Exact Theme Drawer + Matched Overlay Hue + Button Offset -->
 <style>
   /* show only on tablet/mobile */
   @media (min-width:1025px){ .goc-nav, .goc-nav-overlay { display:none!important; } }
@@ -109,31 +109,21 @@
     padding:10px 12px;                      /* touch target size */
     line-height:1; user-select:none; cursor:pointer;
     border:1px solid currentColor; border-radius:0; box-shadow:none; background:none;
-
-    /* ADJUST: move hamburger down a bit (outside spacing) */
-    margin-top: 8px;                         /* <- change 8px to nudge down (try 6–12) */
-    /* If you prefer an offset instead, comment the line above and use:
-       position: relative; top: 4px;        <- change 4px for a tiny vertical nudge */
   }
 
   /* panel (drawer) */
   .goc-panel {
-    position:fixed; top:0; right:0; height:100vh; 
-    width:78vw;                              /* ADJUST: drawer width (e.g., 70vw / 90vw) */
-    max-width:360px;
-    transform:translateX(100%); 
-    transition:transform .25s ease;          /* ADJUST: slide speed (.20s faster / .35s slower) */
-
-    background:#0e0c1b;                      /* ADJUST: drawer color (theme hex) */
-    color:#fff; 
-    padding:16px 24px 16px 30px;             /* ADJUST: last value = left padding (text nudge) */
+    position:fixed; top:0; right:0; height:100vh; width:78vw; max-width:360px;
+    transform:translateX(100%); transition:transform .25s ease;
+    background:#0e0c1b;                      /* exact theme color */
+    color:#fff; padding:16px 24px 16px 30px; /* last value = left padding */
     z-index:10003; display:flex; flex-direction:column; gap:10px;
   }
 
-  /* overlay — SAME HUE as the theme to avoid perceived color shift */
+  /* overlay — SAME HUE as the theme */
   .goc-nav-overlay {
     position:fixed; inset:0; 
-    background:rgba(14,12,27,0.35);          /* ADJUST: alpha 0.25–0.45; keep 14,12,27 for same hue */
+    background:rgba(14,12,27,0.35);          /* adjust only the alpha if needed (e.g., 0.30) */
     opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:10001;
   }
 
@@ -152,20 +142,26 @@
   .goc-nav .goc-panel a:link,
   .goc-nav .goc-panel a:visited {
     color:#fff !important; 
-    font-weight:600;                           /* ADJUST: 500 (semi-bold) or 700 (bold) */
+    font-weight:600; 
     text-decoration:none;
     -webkit-tap-highlight-color:transparent; transition:color .15s ease;
     display:block; padding:10px 8px;
   }
   .goc-nav .goc-panel a:hover,
   .goc-nav .goc-panel a:focus,
-  .goc-nav .goc-panel a:active { 
-    color:#F74D67 !important;                 /* ADJUST: hover/tap color */
-  }
+  .goc-nav .goc-panel a:active { color:#F74D67 !important; }
 
   /* persistent highlight for current page */
   .goc-nav .goc-panel a.is-current,
-  .goc-nav .goc-panel a[aria-current="page"] { color:#F74D67 !important; }  /* ADJUST if desired */
+  .goc-nav .goc-panel a[aria-current="page"] { color:#F74D67 !important; }
+
+  /* === Mobile/tablet: nudge ONLY the hamburger button down a bit === */
+  @media (max-width:1024px){
+    .goc-nav .btn { 
+      position: relative; 
+      top: 10px;                               /* ADJUST: increase to move down (e.g., 8px, 10px) */
+    }
+  }
 </style>
 
 <div class="goc-nav" role="navigation" aria-label="Mobile">
@@ -659,5 +655,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10004\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:27:04 GMT -->
+<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:42:20 GMT -->
 </html>
