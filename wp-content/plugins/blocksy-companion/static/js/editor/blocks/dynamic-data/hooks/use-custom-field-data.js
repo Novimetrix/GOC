@@ -3,10 +3,10 @@ import { useMemo, useState, useEffect } from '@wordpress/element'
 import { getStableJsonKey } from 'ct-wordpress-helpers/get-stable-json-key'
 import cachedFetch from 'ct-wordpress-helpers/cached-fetch'
 
-/ TODO: maybe rename this hook to show that it can be used for something else
-/ other than custom fields.
-/
-/ Potentially, termId can also be provided to get term data.
+// TODO: maybe rename this hook to show that it can be used for something else
+// other than custom fields.
+//
+// Potentially, termId can also be provided to get term data.
 const useCustomFieldData = ({ fieldsContext, fieldDescriptor }) => {
 	const [fieldData, setFieldData] = useState({})
 
@@ -21,7 +21,7 @@ const useCustomFieldData = ({ fieldsContext, fieldDescriptor }) => {
 			field_provider: provider,
 			field_id: id,
 
-			/ optional attributes
+			// optional attributes
 			attributes,
 		}
 

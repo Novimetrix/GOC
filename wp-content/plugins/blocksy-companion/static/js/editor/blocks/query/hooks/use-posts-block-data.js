@@ -21,7 +21,7 @@ export const usePostsBlockData = ({ attributes, previewedPostId }) => {
 			},
 
 			{
-				/ Abort intermediary requests.
+				// Abort intermediary requests.
 				fetcherName: `posts-block-data-${attributes.uniqueId}`,
 
 				headers: {

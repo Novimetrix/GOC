@@ -49,7 +49,7 @@ const DemoInstall = ({ children, path, location }) => {
 	const [demo_error, setDemoError] = useState({
 		isError: false,
 		message: '',
-		/ generic | remote_fetch_failed | ajax_request_failed
+		// generic | remote_fetch_failed | ajax_request_failed
 		reason: 'generic',
 	})
 
@@ -69,7 +69,7 @@ const DemoInstall = ({ children, path, location }) => {
 			let demosResponse = await getStarterSitesStatus()
 
 			if (demosResponse.status && demosResponse.status === 511) {
-				/ This is a special case where the license is invalid
+				// This is a special case where the license is invalid
 				setForceEmptyDemos(true)
 				return
 			}
@@ -79,8 +79,8 @@ const DemoInstall = ({ children, path, location }) => {
 			setDemosList(data)
 			demos_cache = data
 		} catch (response) {
-			/ Usually this is a network error or some policty blocking
-			/ external frontend requests
+			// Usually this is a network error or some policty blocking
+			// external frontend requests
 			console.error('Blocksy:Dashboard:DemoInstall:demos_list', {
 				response,
 				reason: 'frontend_starter_sites_fetch_failed',

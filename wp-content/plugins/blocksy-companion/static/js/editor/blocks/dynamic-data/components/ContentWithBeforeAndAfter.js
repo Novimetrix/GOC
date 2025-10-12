@@ -30,7 +30,7 @@ const ContentWithBeforeAndAfter = ({
 		}
 	}, [before, after])
 
-	/ No portal is needed if there's no HTML in before or after
+	// No portal is needed if there's no HTML in before or after
 	if (!hasHtml) {
 		return (
 			<Fragment>

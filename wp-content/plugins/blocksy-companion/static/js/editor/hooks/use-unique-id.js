@@ -41,8 +41,8 @@ function isDuplicate({ attributes, blockType }) {
 	return false
 }
 
-/ Add support for this, otherwise IDs will be duplicated on clone
-/ https://github.com/WordPress/gutenberg/pull/38643
+// Add support for this, otherwise IDs will be duplicated on clone
+// https://github.com/WordPress/gutenberg/pull/38643
 export const useUniqueId = ({
 	attributes,
 	clientId,

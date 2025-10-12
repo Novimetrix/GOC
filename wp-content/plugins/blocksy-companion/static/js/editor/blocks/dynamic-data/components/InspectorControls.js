@@ -27,15 +27,15 @@ import {
 } from './utils'
 
 export function setImmutably(object, path, value) {
-	/ Normalize path
+	// Normalize path
 	path = Array.isArray(path) ? [...path] : [path]
 
-	/ Shallowly clone the base of the object
+	// Shallowly clone the base of the object
 	object = Array.isArray(object) ? [...object] : { ...object }
 
 	const leaf = path.pop()
 
-	/ Traverse object from root to leaf, shallowly cloning at each level
+	// Traverse object from root to leaf, shallowly cloning at each level
 	let prev = object
 	for (const key of path) {
 		const lvl = prev[key]
@@ -139,15 +139,15 @@ const DynamicDataInspectorControls = ({
 		attributes?.style?.elements?.overlay?.color?.gradient
 	)
 
-	/ Core does really a bad job of handling the color and gradient and they
-	/ do it with two callback, which leads to race conditions. This is really,
-	/ really bad.
-	/
-	/ This is a workaround to handle the race condition.
-	/ Ideally, we should implement our own version of
-	/ __experimentalColorGradientSettingsDropdown.
-	/
-	/ color | gradient
+	// Core does really a bad job of handling the color and gradient and they
+	// do it with two callback, which leads to race conditions. This is really,
+	// really bad.
+	//
+	// This is a workaround to handle the race condition.
+	// Ideally, we should implement our own version of
+	// __experimentalColorGradientSettingsDropdown.
+	//
+	// color | gradient
 	let currentCb = null
 
 	const setOverlayColor = (newColor) => {
@@ -155,7 +155,7 @@ const DynamicDataInspectorControls = ({
 			currentCb = 'color'
 		}
 
-		/ gradient was first. skipping color
+		// gradient was first. skipping color
 		if (currentCb === 'gradient') {
 			currentCb = null
 			return
@@ -167,7 +167,7 @@ const DynamicDataInspectorControls = ({
 			encodeColorValue(newColor)
 		)
 
-		/ If we have a color, we should remove the gradient.
+		// If we have a color, we should remove the gradient.
 		if (newColor) {
 			newValue = setImmutably(
 				newValue,
@@ -184,7 +184,7 @@ const DynamicDataInspectorControls = ({
 			currentCb = 'gradient'
 		}
 
-		/ color was first. skipping gradient
+		// color was first. skipping gradient
 		if (currentCb === 'color') {
 			return
 		}
@@ -195,7 +195,7 @@ const DynamicDataInspectorControls = ({
 			encodeGradientValue(newGradient)
 		)
 
-		/ If we have a gradient, we should remove the color.
+		// If we have a gradient, we should remove the color.
 		if (newGradient) {
 			newValue = setImmutably(
 				newValue,
@@ -728,8 +728,8 @@ const DynamicDataInspectorControls = ({
 				attributes.viewType !== 'default' ? (
 					<ToolsPanelItem
 						hasValue={() => {
-							/ If there's a media background the dimRatio will be
-							/ defaulted to 50 whereas it will be 100 for colors.
+							// If there's a media background the dimRatio will be
+							// defaulted to 50 whereas it will be 100 for colors.
 							return attributes.dimRatio === undefined
 								? false
 								: attributes.dimRatio !== 50

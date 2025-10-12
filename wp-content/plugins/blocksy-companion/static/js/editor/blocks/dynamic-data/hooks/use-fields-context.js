@@ -21,7 +21,7 @@ const computeContext = ({ termId, postId, postType }) => {
 		return context
 	}
 
-	/ Maybe make detection based on PreviewedPostsSelect.js presence
+	// Maybe make detection based on PreviewedPostsSelect.js presence
 	const isSpecialPostType = specialPostTypes.includes(currentPostType)
 
 	if (postId) {
@@ -32,8 +32,8 @@ const computeContext = ({ termId, postId, postType }) => {
 		}
 	}
 
-	/ We should still use global context for special post types,
-	/ with small exceptions.
+	// We should still use global context for special post types,
+	// with small exceptions.
 	const thereIsNoPostInContext =
 		isSpecialPostType && postType === currentPostType
 

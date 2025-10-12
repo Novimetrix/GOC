@@ -18,7 +18,7 @@ export const maybeMountTwoFactorForm = (form, doc) => {
 
 	maybeTwoFactorForm.querySelector('[id="authcode"]').value = currentCode
 
-	/ Enforce numeric-only input for numeric inputmode elements.
+	// Enforce numeric-only input for numeric inputmode elements.
 	let inputEl = maybeTwoFactorForm.querySelector(
 		'input.authcode[inputmode="numeric"]'
 	)
@@ -43,7 +43,7 @@ export const maybeMountTwoFactorForm = (form, doc) => {
 
 			this.value = value
 
-			/ Auto-submit if it's the expected length.
+			// Auto-submit if it's the expected length.
 			if (
 				expectedLength &&
 				value.replace(/ /g, '').length == expectedLength

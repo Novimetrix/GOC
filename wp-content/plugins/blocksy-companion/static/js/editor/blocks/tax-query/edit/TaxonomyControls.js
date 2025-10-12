@@ -14,9 +14,9 @@ const BASE_QUERY = {
 	context: 'view',
 }
 
-/ Helper function to get the term id based on user input in terms `FormTokenField`.
+// Helper function to get the term id based on user input in terms `FormTokenField`.
 const getTermIdByTermValue = (terms, termValue) => {
-	/ First we check for exact match by `term.id` or case sensitive `term.name` match.
+	// First we check for exact match by `term.id` or case sensitive `term.name` match.
 	const termId =
 		termValue?.slug || terms?.find((term) => term.name === termValue)?.slug
 	if (termId) {
@@ -59,7 +59,7 @@ export function TaxonomyItem({ taxonomy, termIds, onChange, label = false }) {
 					...BASE_QUERY,
 					search,
 					orderby: 'name',
-					/ exclude: termIds,
+					// exclude: termIds,
 					per_page: 20,
 				},
 			]
@@ -74,9 +74,9 @@ export function TaxonomyItem({ taxonomy, termIds, onChange, label = false }) {
 		[search, termIds]
 	)
 
-	/ `existingTerms` are the ones fetched from the API and their type is `{ id: number; name: string }`.
-	/ They are used to extract the terms' names to populate the `FormTokenField` properly
-	/ and to sanitize the provided `termIds`, by setting only the ones that exist.
+	// `existingTerms` are the ones fetched from the API and their type is `{ id: number; name: string }`.
+	// They are used to extract the terms' names to populate the `FormTokenField` properly
+	// and to sanitize the provided `termIds`, by setting only the ones that exist.
 	const existingTerms = useSelect(
 		(select) => {
 			if (!termIds?.length) return EMPTY_ARRAY
@@ -90,8 +90,8 @@ export function TaxonomyItem({ taxonomy, termIds, onChange, label = false }) {
 		[termIds]
 	)
 
-	/ Update the `value` state only after the selectors are resolved
-	/ to avoid emptying the input when we're changing terms.
+	// Update the `value` state only after the selectors are resolved
+	// to avoid emptying the input when we're changing terms.
 	useEffect(() => {
 		if (!termIds?.length) {
 			setValue(EMPTY_ARRAY)
@@ -99,8 +99,8 @@ export function TaxonomyItem({ taxonomy, termIds, onChange, label = false }) {
 
 		if (!existingTerms?.length) return
 
-		/ Returns only the existing entity ids. This prevents the component
-		/ from crashing in the editor, when non existing ids are provided.
+		// Returns only the existing entity ids. This prevents the component
+		// from crashing in the editor, when non existing ids are provided.
 		const sanitizedValue = termIds.reduce((accumulator, id) => {
 			const entity = existingTerms.find((term) => term.slug === id)
 
@@ -118,7 +118,7 @@ export function TaxonomyItem({ taxonomy, termIds, onChange, label = false }) {
 		setValue(sanitizedValue)
 	}, [termIds, existingTerms])
 
-	/ Update suggestions only when the query has resolved.
+	// Update suggestions only when the query has resolved.
 	useEffect(() => {
 		if (!searchHasResolved) return
 		setSuggestions(searchResults.map((result) => result.name))

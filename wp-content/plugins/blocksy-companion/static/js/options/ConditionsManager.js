@@ -137,7 +137,7 @@ const ConditionsManager = ({
 		],
 	}
     */
-	/ console.log(conditionsListDescriptor)
+	// console.log(conditionsListDescriptor)
 
 	return (
 		<ConditionsDataContext.Provider

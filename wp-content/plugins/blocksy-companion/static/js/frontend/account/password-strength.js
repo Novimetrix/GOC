@@ -31,7 +31,7 @@ export const mountPasswordStrength = (el) => {
 		)
 		let error = ''
 
-		/ Reset.
+		// Reset.
 		meter.removeClass('short bad good strong')
 		hint.remove()
 

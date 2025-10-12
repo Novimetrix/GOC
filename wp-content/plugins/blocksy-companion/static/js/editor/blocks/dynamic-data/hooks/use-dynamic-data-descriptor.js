@@ -115,10 +115,10 @@ const wooFields = ({ fieldsContext, taxonomies = [] }) => {
 	}
 
 	const shouldHaveWooFields =
-		/ Single product picked
+		// Single product picked
 		(fieldsContext.type === 'post' &&
 			fieldsContext.entity_type === 'product') ||
-		/ Product tab or size guide picked
+		// Product tab or size guide picked
 		(fieldsContext.type === 'post_type' &&
 			fieldsContext.post_type === 'product')
 

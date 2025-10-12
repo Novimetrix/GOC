@@ -207,7 +207,7 @@ export default [
 			return {
 				...cleanedAttributes,
 
-				/ Create share_networks based on prevAttributes
+				// Create share_networks based on prevAttributes
 				share_networks,
 			}
 		},

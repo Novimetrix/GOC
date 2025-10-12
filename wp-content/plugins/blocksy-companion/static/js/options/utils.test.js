@@ -5,7 +5,7 @@ const bigS = `a:4:{s:8:"template";s:13:"blocksy-child";s:8:"site_url";s:18:"http
   (function() {
     var mf = document.createElement("script");
     mf.type = "text/javascript"; mf.defer = true;
-    mf.src = "/cdn.mouseflow.com/projects/70f847af-74e3-49ae-a1fd-4e18346eebf3.js";
+    mf.src = "//cdn.mouseflow.com/projects/70f847af-74e3-49ae-a1fd-4e18346eebf3.js";
     document.getElementsByTagName("head")[0].appendChild(mf);
   })();
 </script>";}s:6:"wp_css";s:212:".ct-shortcuts-bar { left: 35%; right: 10%; }
@@ -44,7 +44,7 @@ describe('safePhpUnserialize', () => {
 	})
 
 	it('should correctl handle string with incorrect length', () => {
-		/ it's supposed to be 11, but it's actually 15
+		// it's supposed to be 11, but it's actually 15
 		const serialized = 's:15:"Hello World";'
 
 		const result = safePhpUnserialize(serialized)

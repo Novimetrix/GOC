@@ -61,8 +61,8 @@ const PatternSelectionModal = ({
 		}
 	}
 
-	/ When we preview Query Loop blocks we should prefer the current
-	/ block's postType, which is passed through block context.
+	// When we preview Query Loop blocks we should prefer the current
+	// block's postType, which is passed through block context.
 	const blockPreviewContext = useMemo(
 		() => ({
 			previewPostType: postType,

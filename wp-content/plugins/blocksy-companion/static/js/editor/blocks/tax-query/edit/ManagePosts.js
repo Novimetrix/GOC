@@ -91,8 +91,8 @@ function PostItem({ label, post_type, postIds, onChange, hasLabel = false }) {
 
 		if (!existingPosts?.length) return
 
-		/ Returns only the existing entity ids. This prevents the component
-		/ from crashing in the editor, when non existing ids are provided.
+		// Returns only the existing entity ids. This prevents the component
+		// from crashing in the editor, when non existing ids are provided.
 		const sanitizedValue = postIds.reduce((accumulator, id) => {
 			const entity = existingPosts.find((post) => post.id === id)
 			if (entity) {
@@ -107,7 +107,7 @@ function PostItem({ label, post_type, postIds, onChange, hasLabel = false }) {
 		setValue(sanitizedValue)
 	}, [postIds, existingPosts])
 
-	/ Update suggestions only when the query has resolved.
+	// Update suggestions only when the query has resolved.
 	useEffect(() => {
 		if (!searchHasResolved) return
 		setSuggestions(searchResults.map((result) => result.title.rendered))

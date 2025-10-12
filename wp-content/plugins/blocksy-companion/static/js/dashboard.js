@@ -17,7 +17,7 @@ import { getStarterSitesStatus } from './dashboard/helpers/starter-sites'
 getStarterSitesStatus()
 	.then((response) => {
 		if (response.status !== 511) {
-			/ We are good, do nothing
+			// We are good, do nothing
 			return
 		}
 
@@ -32,7 +32,7 @@ getStarterSitesStatus()
 				},
 			}
 		).then(({ success, data }) => {
-			/ Ignore result
+			// Ignore result
 		})
 	})
 	.catch((response) => {

@@ -70,7 +70,7 @@ const Edit = ({
 			({ provider: p }) => p === provider
 		)
 
-		/ If we found the provider, check for the field and return the result.
+		// If we found the provider, check for the field and return the result.
 		if (providerFields) {
 			const maybeFieldDescriptor = providerFields.fields.find(
 				({ id }) => id === field
@@ -79,7 +79,7 @@ const Edit = ({
 			return !maybeFieldDescriptor
 		}
 
-		/ No field is missing if the full descriptor is not loaded yet.
+		// No field is missing if the full descriptor is not loaded yet.
 		if (!fullDescriptorLoaded) {
 			return false
 		}
@@ -88,7 +88,7 @@ const Edit = ({
 			({ provider: p }) => p === provider
 		)
 
-		/ If we still don't have the provider, the field is missing.
+		// If we still don't have the provider, the field is missing.
 		if (!providerFields) {
 			return true
 		}
@@ -97,7 +97,7 @@ const Edit = ({
 			({ id }) => id === field
 		)
 
-		/ If we don't have the field, it's missing.
+		// If we don't have the field, it's missing.
 		return !maybeFieldDescriptor
 	}, [attributes.field, fieldDescriptor, fullDescriptorLoaded])
 

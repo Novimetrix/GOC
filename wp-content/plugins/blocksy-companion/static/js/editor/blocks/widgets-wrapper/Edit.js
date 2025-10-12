@@ -34,7 +34,7 @@ const Edit = ({ attributes, setAttributes, clientId, ...rest }) => {
 
 	let allowedBlocks = ['core/heading']
 
-	/ Don't allow multiple headings
+	// Don't allow multiple headings
 	if (currentBlock.innerBlocks.find(({ name }) => name === 'core/heading')) {
 		allowedBlocks = []
 	}

@@ -27,7 +27,7 @@ const CurrentExtension = ({
 		content: null,
 		showExtension: true,
 
-		/ default | from-custom-content
+		// default | from-custom-content
 		activationStrategy: 'default',
 	}
 

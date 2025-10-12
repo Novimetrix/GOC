@@ -56,7 +56,7 @@ let portalDidMount = (refs, initialFocusRef) => {
 		escapeDeactivates: false,
 		clickOutsideDeactivates: false
 	})
-	/ refs.trap.activate()
+	// refs.trap.activate()
 }
 
 let contentWillUnmount = ({ refs }) => {

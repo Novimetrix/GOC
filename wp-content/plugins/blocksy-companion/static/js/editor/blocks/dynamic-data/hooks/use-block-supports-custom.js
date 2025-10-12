@@ -12,7 +12,7 @@ import {
 } from '../components/utils'
 
 export const useBlockSupportsCustom = ({
-	/ text | image
+	// text | image
 	fieldType,
 	attributes,
 

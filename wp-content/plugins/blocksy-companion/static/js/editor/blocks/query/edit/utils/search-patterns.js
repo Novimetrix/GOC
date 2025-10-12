@@ -11,10 +11,10 @@ import removeAccents from 'remove-accents'
  * @return {string} The normalized search input.
  */
 export function normalizeSearchInput(input = '') {
-	/ Disregard diacritics.
+	// Disregard diacritics.
 	input = removeAccents(input)
 
-	/ Trim & Lowercase.
+	// Trim & Lowercase.
 	input = input.trim().toLowerCase()
 
 	return input
@@ -43,7 +43,7 @@ export function getPatternSearchRank(pattern, searchValue) {
 			normalizedTitle.includes(searchTerm)
 		)
 
-		/ Prefer pattern with every search word in the title.
+		// Prefer pattern with every search word in the title.
 		if (hasMatchedTerms) {
 			rank += 10
 		}

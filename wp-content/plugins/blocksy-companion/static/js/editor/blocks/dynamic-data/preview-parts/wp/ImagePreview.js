@@ -35,13 +35,13 @@ const ImagePreview = ({
 		width,
 		height,
 		imageAlign,
-		/ has_field_link,
+		// has_field_link,
 		image_hover_effect,
 		videoThumbnail,
 		minimumHeight,
 		contentPosition,
 
-		/ cover
+		// cover
 		viewType,
 		hasParallax,
 

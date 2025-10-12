@@ -77,7 +77,7 @@ const DimensionControls = ({
 					label={__('Aspect Ratio', 'blocksy-companion')}
 					value={aspectRatio}
 					options={[
-						/ These should use the same values as AspectRatioDropdown in @wordpress/block-editor
+						// These should use the same values as AspectRatioDropdown in @wordpress/block-editor
 						{
 							label: __('Original', 'blocksy-companion'),
 							value: 'auto',

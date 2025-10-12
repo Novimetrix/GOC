@@ -2,7 +2,7 @@ export const computeStartPositionForRowConfiguration = (rowConfiguration) => {
 	return (
 		rowConfiguration
 
-			/ Ignore rows with height 0
+			// Ignore rows with height 0
 			.filter((row) => row.height !== 0)
 
 			.reduce((result, row) => {

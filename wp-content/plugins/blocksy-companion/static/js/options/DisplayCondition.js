@@ -11,7 +11,7 @@ import { Overlay } from 'blocksy-options'
 
 const DisplayCondition = ({
 	option: {
-		/ inline | modal
+		// inline | modal
 		display = 'inline',
 
 		filter = 'all',

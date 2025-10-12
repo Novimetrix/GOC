@@ -16,7 +16,7 @@ const Checkbox = ({
 
 	className,
 
-	/ start | end
+	// start | end
 	position = 'end',
 }) => {
 	const items = [

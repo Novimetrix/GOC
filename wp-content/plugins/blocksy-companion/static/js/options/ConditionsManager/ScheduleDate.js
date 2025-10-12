@@ -93,15 +93,15 @@ const ScheduleDate = ({ onChange, condition }) => {
 
 	const settings = getSettings()
 
-	/ To know if the current timezone is a 12 hour time with look for "a" in the time format
-	/ We also make sure this a is not escaped by a "/"
+	// To know if the current timezone is a 12 hour time with look for "a" in the time format
+	// We also make sure this a is not escaped by a "/"
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
-			.toLowerCase() / Test only the lower case a.
-			.replace(/\\\\/g, '') / Replace "/" with empty strings.
+			.toLowerCase() // Test only the lower case a.
+			.replace(/\\\\/g, '') // Replace "//" with empty strings.
 			.split('')
 			.reverse()
-			.join('') / Reverse the string and test for "a" not followed by a slash.
+			.join('') // Reverse the string and test for "a" not followed by a slash.
 	)
 
 	return (

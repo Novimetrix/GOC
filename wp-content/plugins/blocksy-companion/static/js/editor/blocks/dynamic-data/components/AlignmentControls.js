@@ -98,8 +98,8 @@ const AlignmentControls = ({
 						<DuotoneControl
 							duotonePalette={duotonePalette}
 							colorPalette={colorPallete}
-							/ disableCustomDuotone
-							/ disableCustomColors
+							// disableCustomDuotone
+							// disableCustomColors
 							value={duotonePresetOrColors}
 							onChange={(newDuotone) => {
 								const maybePreset = getDuotonePresetFromColors(
@@ -111,7 +111,7 @@ const AlignmentControls = ({
 									...style,
 									color: {
 										...style?.color,
-										duotone: maybePreset ?? newDuotone, / use preset or fallback to custom colors.
+										duotone: maybePreset ?? newDuotone, // use preset or fallback to custom colors.
 									},
 								}
 								setAttributes({ style: newStyle })

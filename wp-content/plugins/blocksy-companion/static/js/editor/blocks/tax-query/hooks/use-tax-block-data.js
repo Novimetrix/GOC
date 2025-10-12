@@ -20,7 +20,7 @@ export const useTaxBlockData = ({ attributes }) => {
 			},
 
 			{
-				/ Abort intermediary requests.
+				// Abort intermediary requests.
 				fetcherName: `tax-block-data-${attributes.uniqueId}`,
 
 				headers: {

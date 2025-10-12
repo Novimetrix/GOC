@@ -59,7 +59,7 @@ const Preview = ({
 		)
 	}
 
-	/ Likely the descriptor is still loading
+	// Likely the descriptor is still loading
 	if (!fieldDescriptor) {
 		return null
 	}

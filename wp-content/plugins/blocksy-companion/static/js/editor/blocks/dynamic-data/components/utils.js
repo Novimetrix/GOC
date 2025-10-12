@@ -11,7 +11,7 @@ export function compileCSS(style, opts = {}) {
 
 	const rules = [...getCSSRules(style, options), ...(additionalRules || [])]
 
-	/ If no selector is provided, treat generated rules as inline styles to be returned as a single string.
+	// If no selector is provided, treat generated rules as inline styles to be returned as a single string.
 	if (!options?.selector) {
 		const inlineRules = []
 
@@ -320,15 +320,15 @@ export function useBlockSettings(name, parentLayout) {
 export function kebabCase(str) {
 	let input = str?.toString?.() ?? ''
 
-	/ See https://github.com/lodash/lodash/blob/b185fcee26b2133bd071f4aaca14b455c2ed1008/lodash.js#L4970
+	// See https://github.com/lodash/lodash/blob/b185fcee26b2133bd071f4aaca14b455c2ed1008/lodash.js#L4970
 	input = input.replace(/['\u2019]/, '')
 
 	return paramCase(input, {
 		splitRegexp: [
-			/(?!(?:1ST|2ND|3RD|[4-9]TH)(?![a-z]))([a-z0-9])([A-Z])/g, / fooBar => foo-bar, 3Bar => 3-bar
-			/(?!(?:1st|2nd|3rd|[4-9]th)(?![a-z]))([0-9])([a-z])/g, / 3bar => 3-bar
-			/([A-Za-z])([0-9])/g, / Foo3 => foo-3, foo3 => foo-3
-			/([A-Z])([A-Z][a-z])/g, / FOOBar => foo-bar
+			/(?!(?:1ST|2ND|3RD|[4-9]TH)(?![a-z]))([a-z0-9])([A-Z])/g, // fooBar => foo-bar, 3Bar => 3-bar
+			/(?!(?:1st|2nd|3rd|[4-9]th)(?![a-z]))([0-9])([a-z])/g, // 3bar => 3-bar
+			/([A-Za-z])([0-9])/g, // Foo3 => foo-3, foo3 => foo-3
+			/([A-Z])([A-Z][a-z])/g, // FOOBar => foo-bar
 		],
 	})
 }
@@ -520,8 +520,8 @@ export function useGradientsPerOrigin(settings) {
 export function getInlineStyles(styles = {}) {
 	const output = {}
 
-	/ The goal is to move everything to server side generated engine styles
-	/ This is temporary as we absorb more and more styles into the engine.
+	// The goal is to move everything to server side generated engine styles
+	// This is temporary as we absorb more and more styles into the engine.
 	getCSSRules(styles).forEach((rule) => {
 		output[rule.key] = rule.value
 	})
@@ -529,9 +529,9 @@ export function getInlineStyles(styles = {}) {
 	return output
 }
 
-/ Defines which element types are supported, including their hover styles or
-/ any other elements that have been included under a single element type
-/ e.g. heading and h1-h6.
+// Defines which element types are supported, including their hover styles or
+// any other elements that have been included under a single element type
+// e.g. heading and h1-h6.
 
 const ELEMENTS = {
 	link: 'a',
@@ -581,7 +581,7 @@ export const useElementCss = (
 		})
 	}
 
-	/ const blockElementsContainerIdentifier = useInstanceId([], 'wp-elements')
+	// const blockElementsContainerIdentifier = useInstanceId([], 'wp-elements')
 
 	const baseElementSelector = `.${blockElementsContainerIdentifier}`
 	const blockElementStyles = style?.elements
@@ -597,7 +597,7 @@ export const useElementCss = (
 			({ elementType, pseudo, elements, additionalRules }) => {
 				const elementStyles = blockElementStyles?.[elementType]
 
-				/ Process primary element type styles.
+				// Process primary element type styles.
 				if (elementStyles) {
 					const selector = scopeSelector(
 						baseElementSelector,
@@ -613,7 +613,7 @@ export const useElementCss = (
 
 					elementCSSRules.push(compiledCss)
 
-					/ Process any interactive states for the element type.
+					// Process any interactive states for the element type.
 					if (pseudo) {
 						pseudo.forEach((pseudoSelector) => {
 							if (elementStyles[pseudoSelector]) {

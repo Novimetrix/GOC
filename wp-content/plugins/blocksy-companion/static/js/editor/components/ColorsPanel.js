@@ -27,7 +27,7 @@ const ColorsPanel = ({
 				__experimentalGroup="bg"
 				settings={settings}
 				panelId={panelId}
-				/ gradients={[]}
+				// gradients={[]}
 				disableCustomGradients={true}
 				{...containerProps}
 				{...colorGradientSettings}
@@ -51,7 +51,7 @@ const ColorsPanel = ({
 					__experimentalGroup="bg"
 					settings={settings}
 					panelId={panelId}
-					/ gradients={[]}
+					// gradients={[]}
 					disableCustomGradients={true}
 					{...containerProps}
 					{...colorGradientSettings}

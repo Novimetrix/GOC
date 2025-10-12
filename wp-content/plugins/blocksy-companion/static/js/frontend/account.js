@@ -28,7 +28,7 @@ export const maybeCleanupLoadingState = (form) => {
 export const activateScreen = (
 	el,
 	{
-		/ login | register | forgot
+		// login | register | forgot
 		screen = 'login',
 	}
 ) => {
@@ -219,7 +219,7 @@ export const handleAccountModal = (el) => {
 
 			formPreSubmitHook(maybeRegister).then(() =>
 				fetch(
-					/ maybeRegister.action,
+					// maybeRegister.action,
 					`${ct_localizations.ajax_url}?action=blc_implement_user_registration`,
 
 					{
@@ -300,7 +300,7 @@ export const handleAccountModal = (el) => {
 			maybeAddLoadingState(maybeLostPassword)
 
 			fetch(
-				/ maybeLostPassword.action,
+				// maybeLostPassword.action,
 				`${ct_localizations.ajax_url}?action=blc_implement_user_lostpassword`,
 
 				{

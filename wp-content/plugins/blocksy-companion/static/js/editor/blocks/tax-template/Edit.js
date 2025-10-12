@@ -27,9 +27,9 @@ import { getVariablesDefinitions } from './variables'
 import { getStylesForBlock } from '../../utils/css'
 
 const TEMPLATE = [
-	/ ['core/post-title'],
-	/ ['core/post-date'],
-	/ ['core/post-excerpt'],
+	// ['core/post-title'],
+	// ['core/post-date'],
+	// ['core/post-excerpt'],
 ]
 
 export function TaxTemplateInnerBlocks({
@@ -40,7 +40,7 @@ export function TaxTemplateInnerBlocks({
 	const innerBlocksProps = useInnerBlocksProps(
 		{
 			className: classnames('wp-block-term is-layout-flow', [
-				/ `ct-term-${termId}`,
+				// `ct-term-${termId}`,
 			]),
 		},
 		{ template: TEMPLATE, __unstableDisableLayoutClassNames: true }
@@ -72,7 +72,7 @@ function TaxTemplateBlockPreview({
 		blocks,
 		props: {
 			className: classnames('wp-block-term is-layout-flow', [
-				/ `ct-term-${termId}`,
+				// `ct-term-${termId}`,
 			]),
 		},
 	})
@@ -93,7 +93,7 @@ function TaxTemplateBlockPreview({
 				<div
 					tabIndex={0}
 					{...blockPreviewProps}
-					/ eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+					// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 					role="button"
 					onClick={handleOnClick}
 					onKeyPress={handleOnClick}
@@ -106,7 +106,7 @@ function TaxTemplateBlockPreview({
 		<div
 			{...blockPreviewProps}
 			tabIndex={0}
-			/ eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 			role="button"
 			onClick={handleOnClick}
 			onKeyPress={handleOnClick}

@@ -36,9 +36,9 @@ import { usePostsBlockData } from '../query/hooks/use-posts-block-data'
 import RangeControl from '../../components/RangeControl'
 
 const TEMPLATE = [
-	/ ['core/post-title'],
-	/ ['core/post-date'],
-	/ ['core/post-excerpt'],
+	// ['core/post-title'],
+	// ['core/post-date'],
+	// ['core/post-excerpt'],
 ]
 
 export function PostTemplateInnerBlocks({ isSlideshow, elementDescriptor }) {
@@ -91,7 +91,7 @@ function PostTemplateBlockPreview({
 				<article
 					tabIndex={0}
 					{...blockPreviewProps}
-					/ eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+					// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 					role="button"
 					onClick={handleOnClick}
 					onKeyPress={handleOnClick}
@@ -104,7 +104,7 @@ function PostTemplateBlockPreview({
 		<article
 			{...blockPreviewProps}
 			tabIndex={0}
-			/ eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 			role="button"
 			onClick={handleOnClick}
 			onKeyPress={handleOnClick}

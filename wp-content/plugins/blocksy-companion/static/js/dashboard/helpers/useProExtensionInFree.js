@@ -9,7 +9,7 @@ const getLowestPlan = () => {}
 
 const useProExtensionInFree = (extension, args = {}) => {
 	args = {
-		/ pro-ext | pro
+		// pro-ext | pro
 		strategy: 'pro-ext',
 		modalTitle: __('This is a Pro extension', 'blocksy-companion'),
 		...args,

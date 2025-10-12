@@ -21,8 +21,8 @@ const useBreadcrumbsDataDescriptor = ({ postId, postType }) => {
 
 	const visibleTaxonomies = (taxonomies ?? []).filter(
 		(taxonomy) =>
-			/ In some circumstances .visibility can end up as undefined so optional chaining operator required.
-			/ https://github.com/WordPress/gutenberg/issues/40326
+			// In some circumstances .visibility can end up as undefined so optional chaining operator required.
+			// https://github.com/WordPress/gutenberg/issues/40326
 			taxonomy.types.includes(postType) && taxonomy.visibility?.show_ui
 	)
 

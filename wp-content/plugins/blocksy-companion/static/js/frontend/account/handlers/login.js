@@ -38,7 +38,7 @@ export const maybeHandleLoginForm = (el) => {
 			)
 		}
 
-		/ let url = maybeLogin.action
+		// let url = maybeLogin.action
 
 		let url = `${ct_localizations.ajax_url}?action=blc_implement_user_login`
 

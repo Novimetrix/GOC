@@ -71,11 +71,11 @@ export function getPositionClassName(contentPosition) {
  * @return {string} The plain-text content with any html removed.
  */
 export function toPlainText(html) {
-	/ Manually handle BR tags as line breaks prior to `stripHTML` call
+	// Manually handle BR tags as line breaks prior to `stripHTML` call
 	html = html.replace(/<br>/g, '\n')
 
 	const plainText = stripHTML(html).trim()
 
-	/ Merge any consecutive line breaks
+	// Merge any consecutive line breaks
 	return plainText.replace(/\n\n+/g, '\n\n')
 }

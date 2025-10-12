@@ -87,7 +87,7 @@ const getStartPositionFor = (stickyContainer) => {
 		stickyContainer.dataset.sticky.indexOf('shrink') === -1 &&
 		stickyContainer.dataset.sticky.indexOf('auto-hide') === -1
 	) {
-		/ return stickyContainer.parentNode.getBoundingClientRect().height + 200
+		// return stickyContainer.parentNode.getBoundingClientRect().height + 200
 	}
 
 	const headerRect = stickyContainer.closest('header').getBoundingClientRect()
@@ -156,10 +156,10 @@ const getStartPositionFor = (stickyContainer) => {
 
 	let shouldWriteCache = true
 
-	/ Dont write cache until store notice is visible. Sometimes the store notice
-	/ appears too late and the sticky header is not positioned correctly.
-	/
-	/ https://github.com/Creative-Themes/blocksy/issues/4617
+	// Dont write cache until store notice is visible. Sometimes the store notice
+	// appears too late and the sticky header is not positioned correctly.
+	//
+	// https://github.com/Creative-Themes/blocksy/issues/4617
 	const maybeStoreNotice = document.querySelector('.woocommerce-store-notice')
 
 	if (maybeStoreNotice) {
@@ -249,7 +249,7 @@ const compute = () => {
 
 		maybeSetStickyHeightAnimated(() => {
 			return stickyComponents.indexOf('auto-hide') === -1
-				? / case when content is forcing the initial height to be bigger
+				? // case when content is forcing the initial height to be bigger
 				  stickyContainerHeight >
 				  [...stickyContainer.querySelectorAll('[data-row]')].reduce(
 						(res, row) => res + getRowInitialMinHeight(row),

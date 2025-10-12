@@ -58,10 +58,10 @@ const integrations = () => {
 
 registerDynamicChunk('blocksy_account', {
 	mount: (el, { event }) => {
-		/ Don't do anything if there's a panel opened already.
-		/ This means the account is placed in another panel and is opened from
-		/ it. Soon another click event will be fired on the same element
-		/ by the panel logic itself.
+		// Don't do anything if there's a panel opened already.
+		// This means the account is placed in another panel and is opened from
+		// it. Soon another click event will be fired on the same element
+		// by the panel logic itself.
 		if (document.body.dataset.panel) {
 			return
 		}

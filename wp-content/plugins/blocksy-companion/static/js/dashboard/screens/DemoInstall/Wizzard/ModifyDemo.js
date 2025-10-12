@@ -28,7 +28,7 @@ const ModifyDemo = ({ style, nextStep }) => {
 		setPluginsStatus,
 	} = useContext(DemosContext)
 
-	/ idle | loading | done
+	// idle | loading | done
 	const [runningState, setRunningState] = useState('idle')
 
 	const [properDemoName, _] = (currentDemo || '').split(':')

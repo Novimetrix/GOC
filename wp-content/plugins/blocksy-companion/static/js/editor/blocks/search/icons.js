@@ -1,4 +1,4 @@
-/https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/search/edit.js
+//https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/search/edit.js
 import { createElement } from '@wordpress/element'
 
 import { SVG, Rect } from '@wordpress/components'

@@ -8,7 +8,7 @@ export const getRowInitialMinHeight = (el) => {
 	const elComp = getComputedStyle(el)
 	let containerStyles = getComputedStyle(el.firstElementChild)
 
-	/ If row is not visible, return 0
+	// If row is not visible, return 0
 	if (elComp.display === 'none') {
 		return 0
 	}
@@ -142,7 +142,7 @@ export const getRowStickyHeight = (el, hasBorder = true) => {
 		if (!hasLogoWithShrink) {
 			if (
 				Math.round(stickyHeight) !== Math.round(rowStickyHeight) ||
-				/ case when content is forcing the initial height to be bigger
+				// case when content is forcing the initial height to be bigger
 				Math.round(rowStickyHeight) > Math.round(rowInitialMinHeight)
 			) {
 				el.blcStickyHeight = el.getBoundingClientRect().height
@@ -159,34 +159,34 @@ export const getRowStickyHeight = (el, hasBorder = true) => {
 
 	let finalInitialHeight = 0
 
-	/ if (el.querySelector('.site-logo-container')) {
-	/ 	let computedLogo = getComputedStyle(
-	/ 		el.querySelector('.site-logo-container')
-	/ 	)
+	// if (el.querySelector('.site-logo-container')) {
+	// 	let computedLogo = getComputedStyle(
+	// 		el.querySelector('.site-logo-container')
+	// 	)
 
-	/ 	let logoInitialHeight = parseFloat(
-	/ 		computedLogo.getPropertyValue('--logo-max-height') || '50px'
-	/ 	)
+	// 	let logoInitialHeight = parseFloat(
+	// 		computedLogo.getPropertyValue('--logo-max-height') || '50px'
+	// 	)
 
-	/ 	let logoStickyShrink = parseFloat(
-	/ 		computedLogo.getPropertyValue('--logo-sticky-shrink') || '1'
-	/ 	)
+	// 	let logoStickyShrink = parseFloat(
+	// 		computedLogo.getPropertyValue('--logo-sticky-shrink') || '1'
+	// 	)
 
-	/ 	if (logoStickyShrink < 1) {
-	/ 		let rowInitialMinHeight = getRowInitialMinHeight(el)
+	// 	if (logoStickyShrink < 1) {
+	// 		let rowInitialMinHeight = getRowInitialMinHeight(el)
 
-	/ 		if (maybeShrink) {
-	/ 			rowInitialMinHeight *= parseFloat(maybeShrink) / 100
-	/ 		}
+	// 		if (maybeShrink) {
+	// 			rowInitialMinHeight *= parseFloat(maybeShrink) / 100
+	// 		}
 
-	/ 		let logoStickyHeight = logoInitialHeight * logoStickyShrink
+	// 		let logoStickyHeight = logoInitialHeight * logoStickyShrink
 
-	/ 		let finalInitialHeight =
-	/ 			rowStickyHeight - logoInitialHeight + logoStickyHeight
+	// 		let finalInitialHeight =
+	// 			rowStickyHeight - logoInitialHeight + logoStickyHeight
 
-	/ 		return Math.max(rowInitialMinHeight, finalInitialHeight)
-	/ 	}
-	/ }
+	// 		return Math.max(rowInitialMinHeight, finalInitialHeight)
+	// 	}
+	// }
 
 	if (maybeShrink) {
 		rowStickyHeight *= parseFloat(maybeShrink) / 100

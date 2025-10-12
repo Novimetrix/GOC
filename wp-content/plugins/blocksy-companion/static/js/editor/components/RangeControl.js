@@ -25,7 +25,7 @@ const RangeControl = ({ label, onChange, value }) => {
 				</FlexItem>
 				<FlexItem isBlock>
 					<NativeRangeControl
-						value={parseInt(value, 10)} / RangeControl can't deal with strings.
+						value={parseInt(value, 10)} // RangeControl can't deal with strings.
 						onChange={(value) => onChange(+value)}
 						min={1}
 						max={6}
