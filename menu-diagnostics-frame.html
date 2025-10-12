@@ -1,0 +1,95 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOC Menu Diagnostics — Frame</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;margin:16px;background:#0b1220;color:#fff}
+  pre{white-space:pre-wrap;background:#111a30;border:1px solid #223255;padding:12px;border-radius:8px}
+  button{background:#234a8f;color:#fff;border:1px solid #3b6cc4;border-radius:8px;padding:8px 12px;cursor:pointer}
+  input[type=text]{width:100%;max-width:560px;padding:8px;border-radius:8px;border:1px solid #3b6cc4;background:#0a1327;color:#fff}
+  iframe{width:100%;height:70vh;border:1px solid #223255;border-radius:8px;margin-top:12px;background:#fff}
+  .small{opacity:.8;font-size:12px}
+</style>
+<h1>GOC Menu Diagnostics — Frame (same-origin)</h1>
+<div class="small">This loads your page in an iframe and inspects its DOM so we see the real menu markup.</div>
+
+<label>URL to test (same origin):</label>
+<input id="url" type="text" value="/index.html">
+<div style="margin:10px 0;">
+  <button id="load">Load Page</button>
+  <button id="run">Run Checks</button>
+</div>
+
+<iframe id="view" src="/index.html"></iframe>
+
+<h2>Results</h2>
+<pre id="out">Waiting…</pre>
+
+<script>
+(function(){
+  const out = document.getElementById('out');
+  const frame = document.getElementById('view');
+  const url = document.getElementById('url');
+  function w(s){ out.textContent += "\n" + s; }
+  function clear(){ out.textContent = ""; }
+
+  function $f(sel){ return frame.contentDocument && frame.contentDocument.querySelector(sel); }
+  function $$f(sel){ return frame.contentDocument ? Array.prototype.slice.call(frame.contentDocument.querySelectorAll(sel)) : []; }
+
+  function sel(el){ if(!el) return 'none'; var id=el.id?('#'+el.id):''; var cls=el.className?('.'+String(el.className).replace(/\s+/g,'.')):''; return el.tagName.toLowerCase()+id+cls; }
+
+  function isOpen(){
+    if (!frame.contentDocument) return false;
+    const d = frame.contentDocument;
+    return !!(d.querySelector('.is-open, .open, .ct-panel--visible, .ct-offcanvas-open, body.ct-open, body.menu-open, body.offcanvas-open'));
+  }
+
+  function run(){
+    clear();
+    if (!frame.contentDocument){ w("Frame not loaded yet."); return; }
+    const d = frame.contentDocument;
+    const toggle = d.querySelector('[data-toggle-target],.ct-header-trigger,.menu-toggle,.hamburger,.nav-toggle,.ct-toggle');
+    const panel  = d.querySelector('.ct-panel, .ct-drawer, .offcanvas, .mobile-menu, .ct-panel--mobile, #offcanvas');
+    const overlay= d.querySelector('.ct-panel__backdrop, .ct-drawer-backdrop, .offcanvas-backdrop, .mobile-menu-overlay, .ct-backdrop');
+
+    w('Toggle: ' + (toggle?'found ':'MISSING ') + sel(toggle));
+    w('Panel: ' + (panel?'found ':'MISSING ') + sel(panel));
+    w('Overlay: ' + (overlay?'found ':'MISSING ') + sel(overlay));
+
+    if (overlay){
+      const cs = frame.contentWindow.getComputedStyle(overlay);
+      w('Overlay pointer-events: ' + cs.pointerEvents);
+      w('Overlay z-index: ' + cs.zIndex);
+    }
+
+    const hasCt = !!(frame.contentWindow.ctDrawer && typeof frame.contentWindow.ctDrawer.init==='function');
+    const hasElem = !!(frame.contentWindow.elementorFrontend && typeof frame.contentWindow.elementorFrontend.init==='function');
+    w('ctDrawer.init present: ' + hasCt);
+    w('elementorFrontend.init present: ' + hasElem);
+
+    // synthetic click
+    const before = isOpen();
+    if (toggle) { try{ toggle.click(); }catch(e){} }
+    const after = isOpen();
+    if (overlay) { try{ overlay.click(); }catch(e){} }
+    const afterClose = isOpen();
+    w('Synthetic click changed state: ' + (after!==before));
+    w('After open: ' + after + ' | After overlay close: ' + afterClose);
+
+    // list script src
+    const scripts = $$f('script[src]');
+    w('Scripts on page: ' + scripts.length);
+    scripts.forEach(s => w(' - ' + s.getAttribute('src')));
+  }
+
+  document.getElementById('load').onclick = function(){
+    frame.src = url.value || '/index.html';
+    out.textContent = "Loading " + frame.src + " …";
+  };
+  document.getElementById('run').onclick = run;
+
+  frame.addEventListener('load', () => {
+    w("Frame loaded.");
+  });
+})();
+</script>
