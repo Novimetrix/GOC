@@ -1,0 +1,17 @@
+﻿/* Static sticky header (Blocksy-safe) */
+.ct-header, header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10000;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+/* Avoid layout jump while JS sets padding */
+body {
+  padding-top: 72px; /* fallback */
+}
+@media (max-width:1024px){ body { padding-top: 64px; } }
+
