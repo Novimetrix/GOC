@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 17:24:30 GMT -->
+<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:12:55 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -14,7 +14,7 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="GOC &raquo; Feed" href="../feed/index.html" />
 <link rel="alternate" type="application/rss+xml" title="GOC &raquo; Comments Feed" href="../comments/feed/index.html" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalab69.css?ver=89575' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global0430.css?ver=92074' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks225e.css?ver=3.19.0' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -88,7 +88,7 @@
 	class="ct-header-text "
 	data-id="text">
 	<div class="entry-content is-layout-flow">
-		<!-- GOC — CSS-only Toggle Menu (no JS) + Fixed Hamburger + Exact Theme Color + Current Page Highlight -->
+		<!-- GOC — CSS-only Toggle Menu (no JS) + Exact Theme Drawer + Matched Overlay Hue -->
 <style>
   /* show only on tablet/mobile */
   @media (min-width:1025px){ .goc-nav, .goc-nav-overlay { display:none!important; } }
@@ -109,19 +109,19 @@
     border:1px solid currentColor; border-radius:0; box-shadow:none; background:none;
   }
 
-  /* panel (drawer) — lock to your exact shade; remove any tints */
+  /* panel (drawer) — your exact shade; no shadow tint */
   .goc-panel {
     position:fixed; top:0; right:0; height:100vh; width:78vw; max-width:360px;
     transform:translateX(100%); transition:transform .25s ease;
-    background:#0e0c1b !important; color:#fff; padding:16px 24px 16px 30px;
+    background:#0e0c1b;  /* exact theme color */
+    color:#fff; padding:16px 24px 16px 30px; /* last value = left padding */
     z-index:10003; display:flex; flex-direction:column; gap:10px;
-    box-shadow:none !important; mix-blend-mode:normal !important; backdrop-filter:none !important;
-    filter:none !important; opacity:1 !important; isolation:isolate;
   }
 
-  /* overlay — tinted with the SAME hue so perception matches the panel */
+  /* overlay — SAME HUE as the theme to avoid perceived color shift */
   .goc-nav-overlay {
-    position:fixed; inset:0; background:rgba(14,12,27,0.35) !important; /* adjust 0.25–0.45 */
+    position:fixed; inset:0; 
+    background:rgba(14,12,27,0.35);  /* <— only change from your last working version */
     opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:10001;
   }
 
@@ -129,11 +129,13 @@
   #goc-toggle:checked ~ .goc-panel { transform:translateX(0); }
   #goc-toggle:checked ~ .goc-nav-overlay { opacity:1; pointer-events:auto; }
 
-  /* close button inside panel: three horizontal lines, no border */
-  .goc-close { align-self:flex-end; cursor:pointer; line-height:1; padding:6px 8px; color:#fff;
-    border:none; background:none; }
+  /* close button inside panel: three white lines, no border */
+  .goc-close {
+    align-self:flex-end; cursor:pointer; line-height:1; padding:6px 8px; color:#fff;
+    border:none; background:none;
+  }
 
-  /* Link styles */
+  /* Strong, touch-friendly link styles */
   .goc-nav .goc-panel a,
   .goc-nav .goc-panel a:link,
   .goc-nav .goc-panel a:visited {
@@ -145,14 +147,12 @@
   .goc-nav .goc-panel a:focus,
   .goc-nav .goc-panel a:active { color:#F74D67 !important; }
 
-  /* Persistent highlight for current page */
+  /* persistent highlight for current page */
   .goc-nav .goc-panel a.is-current,
   .goc-nav .goc-panel a[aria-current="page"] { color:#F74D67 !important; }
 
-  /* —— Fixed hamburger on mobile/tablet —— */
-  @media (max-width:1024px){
-    .goc-nav { position:fixed; top:8px; right:12px; z-index:10020; } /* adjust top/right if needed */
-    body { padding-top:56px; } /* reserve space so content doesn't sit under the fixed button */
+  @media (hover:none){
+    .goc-nav .goc-panel a:active { color:#F74D67 !important; }
   }
 </style>
 
@@ -169,7 +169,7 @@
       <span class="bars"><span></span></span>
     </label>
 
-    <!-- Links -->
+    <!-- Links in requested order -->
     <a href="../index.html">Home</a>
     <a href="../about/index.html">About</a>
     <a href="index.html">Services</a>
@@ -180,25 +180,17 @@
 </div>
 
 <script>
-/* Current-page highlight: matches /about/ and /about/index.html (ignores ?query and #hash) */
+/* Minimal current-page marker (keeps your markup untouched) */
 (function() {
   function norm(u){
-    try {
-      / handle absolute or relative hrefs
-      var a = document.createElement('a'); a.href = u;
-      var p = a.pathname || '/';
-      p = p.replace(/index\.html?$/i,'');        / strip index.html
-      p = p.replace(/\/+$/,'') + '/';            / ensure single trailing slash
-      return p;
-    } catch(e){ return '/'; }
+    try{var a=document.createElement('a');a.href=u;var p=a.pathname||'/';
+      p=p.replace(/index\.html?$/i,''); p=p.replace(/\/+$/,'')+'/'; return p;}
+    catch(e){return '/';}
   }
-  var here = norm(location.pathname);
+  var here=norm(location.pathname);
   document.querySelectorAll('.goc-panel a[href]').forEach(function(a){
-    var link = norm(a.getAttribute('href'));
-    if (link === here) {
-      a.classList.add('is-current');
-      a.setAttribute('aria-current','page');
-    }
+    var link=norm(a.getAttribute('href'));
+    if(link===here){ a.classList.add('is-current'); a.setAttribute('aria-current','page'); }
   });
 })();
 </script>
@@ -655,5 +647,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10004\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 17:24:30 GMT -->
+<!-- Mirrored from localhost:10004/services/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Oct 2025 18:12:55 GMT -->
 </html>
