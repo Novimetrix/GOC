@@ -1,5 +1,5 @@
-/ /functions/robots.txt.js  (Cloudflare Pages Functions - basic mode)
-/ Serves a clean robots.txt from the edge (no managed block).
+// /functions/robots.txt.js  (Cloudflare Pages Functions - basic mode)
+// Serves a clean robots.txt from the edge (no managed block).
 
 const BODY = [
   "User-agent: *",
