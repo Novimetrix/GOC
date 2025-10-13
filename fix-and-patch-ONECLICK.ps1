@@ -81,3 +81,23 @@ Write-Host ("  Files changed: {0}" -f ($changed | Select-Object -Unique | Measur
 Write-Host ("  localhost refs left: {0}" -f $localhostLeft)
 Write-Host ("  srcset/sizes left: {0}" -f $srcsetLeft)
 Write-Host "Open GitHub Desktop → the edited HTML files should now appear under Changes."
+
+# === FIX for malformed regex in main202b.js (Blocksy bundle) ===
+try {
+    $jsPath = "C:\Users\moham\Desktop\GOC-Export\GOC\localhost_10004\wp-content\themes\blocksy\static\bundle\main202b.js"
+    if (Test-Path $jsPath) {
+        $content = Get-Content -LiteralPath $jsPath -Raw
+        # Replace `/^https?:\/\/.test`  ->  `/^https?:\/\/\/.test`
+        $new = $content -replace '/\^https\?\:\/\/\.test','/^https?:\/\/\/.test'
+        if ($new -ne $content) {
+            Set-Content -LiteralPath $jsPath -Value $new -Encoding UTF8
+            Write-Host "Fixed regex in main202b.js"
+        } else {
+            Write-Host "main202b.js already OK (no change)."
+        }
+    } else {
+        Write-Host "main202b.js not found (skipped)."
+    }
+} catch {
+    Write-Host "Error while fixing main202b.js: $($_.Exception.Message)"
+}
