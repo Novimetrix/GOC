@@ -101,3 +101,35 @@ try {
 } catch {
     Write-Host "Error while fixing main202b.js: $($_.Exception.Message)"
 }
+
+
+# === FIX for malformed regex in main202b.js (Blocksy bundle) — LITERAL REPLACE (no regex) ===
+try {
+    $jsPath = "C:\Users\moham\Desktop\GOC-Export\GOC\localhost_10004\wp-content\themes\blocksy\static\bundle\main202b.js"
+    if (Test-Path -LiteralPath $jsPath) {
+        $content = Get-Content -LiteralPath $jsPath -Raw
+        $orig1 = '/^https?:\/\/.test('
+        $good1 = '/^https?:\/\/\/.test('
+        $orig2 = '/^https?:\/\/.testn'
+        $good2 = '/^https?:\/\/\/.testn'
+        $orig3 = '/^https?:\/\/.test'
+        $good3 = '/^https?:\/\/\/.test'
+        $changed = $false
+
+        if ($content.Contains($orig1)) { $content = $content.Replace($orig1, $good1); $changed = $true }
+        if ($content.Contains($orig2)) { $content = $content.Replace($orig2, $good2); $changed = $true }
+        if (-not $changed -and $content.Contains($orig3)) { $content = $content.Replace($orig3, $good3); $changed = $true }
+
+        if ($changed) {
+            Set-Content -LiteralPath $jsPath -Value $content -Encoding UTF8
+            Write-Host "Fixed regex in main202b.js (literal replace)"
+        } else {
+            Write-Host "main202b.js already OK or pattern not found (skipped)."
+        }
+    } else {
+        Write-Host "main202b.js not found (skipped)."
+    }
+} catch {
+    Write-Host "Error while fixing main202b.js: $($_.Exception.Message)"
+}
+
