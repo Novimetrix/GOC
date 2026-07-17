@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10004/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Jul 2026 23:46:14 GMT -->
+<!-- Mirrored from localhost:10004/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Jul 2026 23:52:22 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -19,7 +19,7 @@
 img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global86a9.css?ver=31949' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global22c0.css?ver=32314' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks7be3.css?ver=3.19.7' media='all' />
 <style id="ugb-style-css-inline-css">
 :root {--stk-block-width-default-detected: 1290px;}
@@ -130,103 +130,170 @@ ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:
 
   /* three-line icon */
   .goc-nav .bars { display:inline-block; width:22px; height:14px; position:relative; }
-  .goc-nav .bars::before, .goc-nav .bars::after, .goc-nav .bars span{
-    content:""; position:absolute; left:0; right:0; height:2px; background:currentColor;
+  .goc-nav .bars::before,
+  .goc-nav .bars::after,
+  .goc-nav .bars span{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    height:2px;
+    background:currentColor;
   }
-  .goc-nav .bars::before{ top:0 } .goc-nav .bars span{ top:6px } .goc-nav .bars::after{ bottom:0 }
+  .goc-nav .bars::before{ top:0; }
+  .goc-nav .bars span{ top:6px; }
+  .goc-nav .bars::after{ bottom:0; }
 
   /* open button (square, no rounding) */
   .goc-nav .btn {
-    display:inline-block; 
+    display:inline-block;
     padding:10px 12px;
-    line-height:1; user-select:none; cursor:pointer;
-    border:1px solid currentColor; border-radius:0; box-shadow:none; background:none;
+    line-height:1;
+    user-select:none;
+    cursor:pointer;
+    border:1px solid currentColor;
+    border-radius:0;
+    box-shadow:none;
+    background:none;
   }
 
   /* panel (drawer) */
   .goc-panel {
-    position:fixed; top:0; right:0; height:100vh; width:78vw; max-width:360px;
-    transform:translateX(100%); transition:transform .25s ease;
+    position:fixed;
+    top:0;
+    right:0;
+    height:100vh;
+    width:78vw;
+    max-width:360px;
+    transform:translateX(100%);
+    transition:transform .25s ease;
     background:#ffffff;
-    color:#111827; padding:16px 24px 16px 30px;
-    z-index:10003; display:flex; flex-direction:column; gap:10px;
+    color:#111827;
+    padding:16px 24px 16px 30px;
+    z-index:10003;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
   }
 
-  /* overlay — SAME HUE as the theme */
+  /* overlay */
   .goc-nav-overlay {
-    position:fixed; inset:0; 
+    position:fixed;
+    inset:0;
     background:rgba(14,12,27,0.35);
-    opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:10001;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:10001;
   }
 
   /* toggle logic */
-  #goc-toggle:checked ~ .goc-panel { transform:translateX(0); }
-  #goc-toggle:checked ~ .goc-nav-overlay { opacity:1; pointer-events:auto; }
+  #goc-toggle:checked ~ .goc-panel {
+    transform:translateX(0);
+  }
 
-  /* close button inside panel: three lines, no border */
+  #goc-toggle:checked ~ .goc-nav-overlay {
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  /* close button */
   .goc-close {
-    align-self:flex-end; cursor:pointer; line-height:1; padding:6px 8px; color:#111827;
-    border:none; background:none;
+    align-self:flex-end;
+    cursor:pointer;
+    line-height:1;
+    padding:6px 8px;
+    color:#111827;
+    border:none;
+    background:none;
   }
 
   /* link styles */
   .goc-nav .goc-panel a,
   .goc-nav .goc-panel a:link,
-  .goc-nav .goc-panel a:visited {
-    color:#111827 !important; 
-    font-weight:600; 
+  .goc-nav .goc-panel a:visited{
+    color:#111827 !important;
+    font-weight:600;
     text-decoration:none;
-    -webkit-tap-highlight-color:transparent; transition:color .15s ease;
-    display:block; padding:10px 8px;
+    -webkit-tap-highlight-color:transparent;
+    transition:color .15s ease;
+    display:block;
+    padding:10px 8px;
   }
+
   .goc-nav .goc-panel a:hover,
   .goc-nav .goc-panel a:focus,
-  .goc-nav .goc-panel a:active { color:#111827 !important; }
+  .goc-nav .goc-panel a:active{
+    color:#111827 !important;
+  }
 
-  /* persistent highlight for current page */
+  /* current page */
   .goc-nav .goc-panel a.is-current,
-  .goc-nav .goc-panel a[aria-current="page"] { color:#F74D67 !important; }
+  .goc-nav .goc-panel a[aria-current="page"]{
+    color:#F74D67 !important;
+  }
 
-  /* === Mobile/tablet: nudge ONLY the hamburger button down a bit === */
+  /* Mobile/tablet: nudge ONLY the hamburger button down a bit */
   @media (max-width:1024px){
-    .goc-nav .btn { 
-      position: relative; 
-      top: 10px;
+    .goc-nav .btn{
+      position:relative;
+      top:10px;
     }
   }
 </style></p>
 
 <div class="goc-nav" role="navigation" aria-label="Mobile">
-  <input id="goc-toggle" type="checkbox" />
-  <!-- Open button -->
-  <label class="btn" for="goc-toggle" aria-label="Open menu"> </label>
 
-  <nav class="goc-panel" aria-label="Main">
-    <!-- Close button -->
-    <label class="goc-close" for="goc-toggle" aria-label="Close menu"> </label>
+<input id="goc-toggle" type="checkbox" />
 
-    <!-- Links -->
-    <a href="../index.html">Home</a>
-    <a href="index.html">About</a>
-    <a href="../services/index.html">Services</a>
-    <a href="../contact/index.html">Contact</a>
-  </nav>
+<!-- Open button -->
+<label class="btn" for="goc-toggle" aria-label="Open menu">
+  <span class="bars"><span></span></span>
+</label>
 
-  <label class="goc-nav-overlay" for="goc-toggle" aria-hidden="true"></label>
+<nav class="goc-panel" aria-label="Main">
+
+<!-- Close button -->
+<label class="goc-close" for="goc-toggle" aria-label="Close menu">
+  <span class="bars"><span></span></span>
+</label>
+
+<!-- Links -->
+<a href="../index.html">Home</a>
+<a href="index.html">About</a>
+<a href="../services/index.html">Services</a>
+<a href="../contact/index.html">Contact</a>
+
+</nav>
+
+<label class="goc-nav-overlay" for="goc-toggle" aria-hidden="true"></label>
+
 </div>
 
 <p><script>
 /* Minimal current-page marker */
 (function() {
   function norm(u){
-    try{var a=document.createElement('a');a.href=u;var p=a.pathname||'/';
-      p=p.replace(/index\.html?$/i,''); p=p.replace(/\/+$/,'')+'/'; return p;}
-    catch(e){return '/';}
+    try{
+      var a=document.createElement('a');
+      a.href=u;
+      var p=a.pathname||'/';
+      p=p.replace(/index\.html?$/i,'');
+      p=p.replace(/\/+$/,'')+'/';
+      return p;
+    }catch(e){
+      return '/';
+    }
   }
+
   var here=norm(location.pathname);
+
   document.querySelectorAll('.goc-panel a[href]').forEach(function(a){
     var link=norm(a.getAttribute('href'));
-    if(link===here){ a.classList.add('is-current'); a.setAttribute('aria-current','page'); }
+    if(link===here){
+      a.classList.add('is-current');
+      a.setAttribute('aria-current','page');
+    }
   });
 })();
 </script></p>	</div>
@@ -479,5 +546,5 @@ var ct_localizations = {"ajax_url":"/wp-admin/admin-ajax.php","public_url":"/wp-
 
 </body>
 
-<!-- Mirrored from localhost:10004/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Jul 2026 23:46:14 GMT -->
+<!-- Mirrored from localhost:10004/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Jul 2026 23:52:22 GMT -->
 </html>
