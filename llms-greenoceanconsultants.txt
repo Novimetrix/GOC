@@ -1,0 +1,22 @@
+# Green Ocean Consultants
+
+Official website: <https://greenoceanconsultants.com>
+
+Green Ocean Consultants provides practical WordPress support, website troubleshooting, Cloudflare and DNS assistance, SEO guidance, and technical website services for businesses, creators, and individuals.
+
+## Website
+
+- [Home](https://greenoceanconsultants.com/)
+- [Services](https://greenoceanconsultants.com/services/)
+- [About](https://greenoceanconsultants.com/about/)
+- [Contact](https://greenoceanconsultants.com/contact/)
+
+## AI Usage Policy
+
+The content on this website is protected by copyright.
+
+Reading and indexing this website for search, navigation, and citation is permitted.
+
+Using the site's original content to train, fine-tune, or improve AI or machine learning models is not permitted without prior written permission from the copyright holder.
+
+For licensing, permissions, or business enquiries, please contact Green Ocean Consultants through the Contact page.
